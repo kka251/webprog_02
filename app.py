@@ -143,7 +143,7 @@ def sm():
 @app.route('/lab2/example')
 def example():
     name = 'Курилова Кристина'
-    num_lab = '2'
+    num_lab = 'Лабораторная работа 2'
     group = 'ФБИ-14'
-    kurs = '3'
+    kurs = '3 курс'
     return render_template('example.html', name=name, num_lab=num_lab, group=group, kurs=kurs)
