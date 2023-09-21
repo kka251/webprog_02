@@ -163,3 +163,11 @@ def example():
         {'author': 'Лев Толстой','name': 'Анна Каренина', 'zhanr': 'роман', 'str': 864 },
         {'author': 'Антон Чехов','name': 'Вишневый сад', 'zhanr': 'пьеса', 'str': 352 }]
     return render_template('example.html', name=name, num_lab=num_lab, group=group, kurs=kurs, fruits=fruits, book=book)
+
+@app.route('/lab2/')
+def lab2():
+    return render_template('lab2.html')
+
+@app.route('/lab2/home')
+def home():
+    return render_template('home.html')
