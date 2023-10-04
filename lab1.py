@@ -2,7 +2,6 @@ from flask import Blueprint, redirect, url_for, render_template
 lab1 = Blueprint('lab1',__name__)
 
 @lab1.route("/")
-
 @lab1.route("/index")
 def start():
     return redirect ("/menu", code=302)
@@ -29,6 +28,9 @@ def menu():
                 </li>
                 <li>
                     <a href="http://127.0.0.1:5000/lab2" target="_blank" >Лабораторная работа 2</a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:5000/lab3" target="_blank" >Лабораторная работа 3</a>
                 </li>
         </ol>
         <footer>
