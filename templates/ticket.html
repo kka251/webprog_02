@@ -1,0 +1,120 @@
+<style>
+    .error {
+        color: brown;
+        font-weight: bolder;
+    }
+    .ticket{
+        font-size: 20px;
+        border: 1px solid;
+        border-color: black ;
+        background-color: blanchedalmond;
+        margin: 10px 800px 10px 40px;
+        padding: 5px;
+    }
+    .knopka {
+        font-weight: bold;
+        font-size: 25px;
+        margin: 10px 1000px 10px 40px;
+    }
+    h1 {
+        text-align: center;
+    }
+</style>
+{% extends 'base.html' %}
+
+{% block lab %} Лабораторная работа 3 {% endblock %}
+
+{% block main %}
+    
+    {% if fio %}
+    
+        <form action="/lab3/pay2">
+
+            <h1>Оформленный билет</h1>
+            <div class="ticket">
+                <div><b>Ваше ФИО:</b> {{ fio }}</div>
+                <div><b>Тип билета:</b> {{ 'детский' if tip == 'children' else 'взрослый' }}</div>
+                <div><b>Полка:</b> {{ 'верхняя' if polka == 'verh' else 'нижняя' if polka == 'niz' else 'верхняя боковая' if polka == 'verhbok' else 'нижняя боковая'  }}</div>
+                <div><b>Багаж:</b> {{ 'да' if bag == 'yes' else 'нет' }}</div>
+                <div><b>Ваш возраст:</b> {{ age }}</div>
+                <div><b>Пункт отправления:</b> {{ viezd }}</div>
+                <div><b>Пункт прибытия:</b> {{ prib }}</div>
+                <div><b>Дата отправления:</b> {{ date }}</div>
+            </div>
+
+            <div>
+                <button type="submit">Оплатить</button>
+            </div>
+            <div class="knopka">
+                <a href="/lab3/ticket">Заново</a>
+            </div>
+        </form>
+    {% else %}
+
+    <h1>Оформление билета</h1>
+    
+    <form>
+        <label>Ваше ФИО:</label>
+        <div>
+            <input type="text" placeholder="ФИО" name="fio" value="{{ fio or '' }}">
+            <span class="error">{{ errors.fio }}</span>
+        </div>
+
+        <label>Тип:</label>
+        <div>
+            <select name="tip">
+                <option value="children" {{ sex == 'children' and 'selected' }} >детский</option>
+                <option value="adult" {{ sex == 'adult' and 'selected' }}>взрослый</option>
+            </select>
+        </div>
+
+        <label>Полка:</label>
+        <div>
+            <select name="polka">
+                <option value="verh" {{ polka == 'verh' and 'selected' }}> верхняя</option>
+                <option value="niz" {{ polka == 'niz' and 'selected' }}> нижняя</option>
+                <option value="verhbok" {{ polka == 'verhbok' and 'selected' }}> верхняя боковая</option>
+                <option value="nizbok" {{ polka == 'nizbok' and 'selected' }}> нижняя боковая</option>
+            </select>
+        </div>
+        
+        <label>Есть багаж? </label>
+        <div>
+            <select name="bag">
+                <option value="yes" {{ bag == 'children' and 'selected' }} >да</option>
+                <option value="no" {{ bag == 'adult' and 'selected' }}>нет</option>
+            </select>
+        </div>
+
+        <label>Ваш возраст:</label>
+        <div>
+            <input type="number" name="age" value="{{ age or '' }}" min = 18 max = "120">
+            <span class="error">{{ errors.age }}</span>
+        </div>
+        
+        
+        <label>Пункт отправления:</label>
+        <div>
+            <input type="text"  name="viezd" value="{{ viezd or '' }}">
+            <span class="error">{{ errors.viezd }}</span>
+        </div>
+
+        <label>Пункт прибытия:</label>
+        <div>
+            <input type="text"  name="prib" value="{{ prib or '' }}">
+            <span class="error">{{ errors.prib }}</span>
+        </div>
+
+        <label>Дата отправления:</label>
+        <div>
+            <input type="date.toLocaleString('ru-RU')"  name="date" value="{{ date or '' }}">
+            <span class="error">{{ errors.date }}</span>
+        </div>
+        <div>
+
+        <div>
+            <button type="submit">Заказать</button>
+        </div>
+    </form>
+    {% endif %}
+{% endblock %}
