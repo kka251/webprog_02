@@ -31,6 +31,7 @@
         <form action="/lab3/pay2">
 
             <h1>Оформленный билет</h1>
+            <input type="hidden" name="bag" value="{{ bag }}">
             <div class="ticket">
                 <div><b>Ваше ФИО:</b> {{ fio }}</div>
                 <div><b>Тип билета:</b> {{ 'детский' if tip == 'children' else 'взрослый' }}</div>
@@ -81,8 +82,8 @@
         <label>Есть багаж? </label>
         <div>
             <select name="bag">
-                <option value="yes" {{ bag == 'children' and 'selected' }} >да</option>
-                <option value="no" {{ bag == 'adult' and 'selected' }}>нет</option>
+                <option value="yes" {{ bag == 'yes' and 'selected' }} >да</option>
+                <option value="no" {{ bag == 'no' and 'selected' }}>нет</option>
             </select>
         </div>
 
