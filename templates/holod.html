@@ -1,0 +1,31 @@
+<style>
+    .error3{
+        font-weight: bold;
+        color: brown;
+        font-size: 20px;
+    }
+</style>
+{% extends 'base.html' %}
+
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{% block main %}
+    <h1>Холодильник</h1>
+    <form method="post">
+        <div>
+            <label for="temp">Температура</label>
+            <input type="number" name="temp" id="temp" value= "{{ temp }}" >
+        </div>
+        <div>
+            <button type="submit">Установить температуру</button>
+            <button type="reset">Отмена</button>
+        </div>
+    </form>
+    <div class="error3">{{ error3 }} 
+    {% if snowflakes > 0 %}
+    {% for i in range(snowflakes) %}
+            &#10052;
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}
