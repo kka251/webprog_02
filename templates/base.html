@@ -10,14 +10,14 @@
         body {
             color: {{ request.cookies.get('color') }};
             background-color: {{ request.cookies.get('bg_color') }};
-            font-size: {{ request.cookies.get('font_size')}}px;
+            font-size: {{ request.cookies.get('font_size')}};
         }
     </style>
     {% endif %}
 </head>
 <body>
     <header>
-        WEB-программирование, часть 2. Лабораторная работа 4 
+        WEB-программирование, часть 2. {{self.lab()}}
     </header>
 
     <main>

@@ -90,11 +90,11 @@ def zerno():
     }
     
     total_price = int(weight) * prices[grain]
-    zakaz = 'Заказ успешно сформирован. Вы заказали {}. Вес: {} т. Сумма к оплате: {} руб.'.format(grain, weight, int(total_price))
+    zakaz = 'Вы заказали {}. Вес: {} т. Сумма к оплате: {} руб.'.format(grain, weight, int(total_price))
 
     if int(weight) >= 50 and int(weight) <= 500:
         total_price *= 0.9
-        zakaz = 'Заказ успешно сформирован. Вы заказали {}. Вес: {} т. Сумма к оплате: {} руб.'.format(grain, weight, int(total_price)) 
+        zakaz = 'Вы заказали {}. Вес: {} т. Сумма к оплате: {} руб.'.format(grain, weight, int(total_price)) 
         sk = 'Применена скидка 10% за большой объем'
         return render_template('zerno.html', grain=grain, weight=weight, total_price=total_price, zakaz=zakaz, sk=sk)
     elif int(weight) > 500:
