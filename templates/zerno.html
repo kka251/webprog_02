@@ -1,0 +1,48 @@
+<style>
+    .zakaz{
+        font-size: 20px;
+        border: 1px solid;
+        border-color: black ;
+        background-color: blanchedalmond;
+        margin: 10px 800px 10px 40px;
+        padding: 5px;
+    }
+</style>
+{% extends 'base.html' %}
+
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{% block main %}
+    {% if grain %}
+    <h1>Заказ успешно сформирован</h1>
+    <div class="zakaz">
+        <div>{{ zakaz }}</div>
+        <div><b>{{ sk }}</b></div>
+        <div>{{ message }}</div>
+    </div> 
+
+    <a href="/lab4/zerno">Вернуться на главную страницу</a>
+
+    {% else %}
+    <form method="post">
+        <h1>Заказ зерна</h1>
+        <label for="grain">Зерно:</label>
+        <div>
+            <select id="grain" name="grain" value="{{ grain }}">
+                <option value="ячмень">ячмень</option>
+                <option value="овес">овес</option>
+                <option value="пшено">пшеница</option>
+                <option value="рожь">рожь</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="weight">Вес</label>
+            <input type="number" id="weight" name="weight" value ='{{ weight }}'>
+        </div>
+
+        <input type="submit" name="submit" value="Оформить заказ">
+        </form>
+
+    {% endif %}
+{% endblock %}

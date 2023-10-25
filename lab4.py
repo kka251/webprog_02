@@ -68,4 +68,44 @@ def holod():
     else:
         return render_template('holod.html', temp=temp, error3=error3, snowflakes=snowflakes)
 
+
+@lab4.route('/lab4/zerno', methods=['GET', 'POST'])
+def zerno():
+    if request.method == 'GET':
+        return render_template('zerno.html')
     
+    grain = request.form['grain']
+    weight = request.form['weight']
+    
+    if not weight:
+        message = 'Ошибка: не введен вес'
+        return render_template('zerno.html', grain=grain, weight=weight, message=message)
+   
+    
+    prices = {
+        'ячмень': 12000,
+        'овес': 8500,
+        'пшено': 8700,
+        'рожь': 14000
+    }
+    
+    total_price = int(weight) * prices[grain]
+    zakaz = 'Заказ успешно сформирован. Вы заказали {}. Вес: {} т. Сумма к оплате: {} руб.'.format(grain, weight, int(total_price))
+
+    if int(weight) >= 50 and int(weight) <= 500:
+        total_price *= 0.9
+        zakaz = 'Заказ успешно сформирован. Вы заказали {}. Вес: {} т. Сумма к оплате: {} руб.'.format(grain, weight, int(total_price)) 
+        sk = 'Применена скидка 10% за большой объем'
+        return render_template('zerno.html', grain=grain, weight=weight, total_price=total_price, zakaz=zakaz, sk=sk)
+    elif int(weight) > 500:
+        message = 'Ошибка: такого объема сейчас нет в наличии'
+        return render_template('zerno.html', grain=grain, weight=weight, total_price=total_price, message=message)
+    elif int(weight) <= 0:
+        message = 'Ошибка: неверное значение веса'
+        return render_template('zerno.html', grain=grain, weight=weight, total_price=total_price, message=message)
+    return render_template('zerno.html', grain=grain, weight=weight, total_price=total_price, zakaz=zakaz)
+
+
+
+    
+
