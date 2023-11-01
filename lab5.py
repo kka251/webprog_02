@@ -164,8 +164,8 @@ def userArticles():
     if userID is not None:
         conn = dbConnect()
         cur = conn.cursor()
-
-        cur.execute("SELECT id, tittle FROM articles WHERE user_id = %s", (userID,))
+        
+        cur.execute("SELECT id, tittle FROM articles WHERE user_id = %s ORDER BY is_favorite ASC, id DESC", (userID,))
         
         articles = cur.fetchall()
 
@@ -179,3 +179,15 @@ def userArticles():
 def logout():
     session.clear()  # Удаление всех полей из сессии
     return redirect('/lab5/log')
+
+@lab5.route('/lab5/article/<int:article_id>/favorite', methods=["POST"])
+def addToFavorites(article_id):
+    userID = session.get("id")
+    if userID is not None:
+        conn = dbConnect()
+        cur = conn.cursor()
+        cur.execute("UPDATE articles SET is_favorite = True WHERE id = %s AND user_id = %s", (article_id, userID))
+        conn.commit()
+        dbClose(cur, conn)
+        return redirect("/lab5/articles")
+    return redirect("/lab5/log")
