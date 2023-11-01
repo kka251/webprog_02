@@ -1,0 +1,42 @@
+<style>
+    .errors{
+        font-weight: bold;
+        color: brown;
+        font-size: 20px;
+    }
+    main {
+        margin-left: 25px;
+        text-align: center;
+        margin-top: 10px;
+    }
+   .article{
+        margin-top: 10px;
+   }
+</style>
+{% extends 'base.html' %}
+
+{% block lab %}Лабораторная работа 5{% endblock %}
+
+{% block main %}
+    
+    <h1>Новая заметка</h1>
+    {% if errors %}
+        <div class="errors">{{ errors }}</div>
+    {% endif %}
+    <form method="post">
+        <div class="article">
+            <input name="tittle_article" type="text" placeholder="Название статьи">
+        </div>
+
+        <div class="article">
+            <textarea name="text_article" placeholder="Текст статьи" rows="20" cols="60">
+            </textarea>
+
+        </div>
+
+        <div class="article"> 
+            <input type="submit" value="Apply">
+        </div>
+    </form>
+    
+{% endblock %}

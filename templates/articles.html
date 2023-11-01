@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block lab %}Лабораторная работа 5{% endblock %}
+
+{% block main %}
+    <h1>Мои заметки</h1>
+    <ul>
+        {% for article in articles %}
+            <li><a href="/lab5/article/{{ article[0] }}">{{ article[1] }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
