@@ -142,7 +142,8 @@ def getArticle(article_id):
         conn = dbConnect()
         cur = conn.cursor()
 
-        cur.execute("SELECT tittle, article_text FROM articles WHERE id = %s AND is_public = True", (article_id,))
+        cur.execute("SELECT tittle, article_text, likes FROM articles WHERE id = %s AND is_public = True", (article_id,))
+
 
         articleBody = cur.fetchone()
 
@@ -153,7 +154,7 @@ def getArticle(article_id):
         
         text = articleBody[1].splitlines()
 
-        return render_template("article.html", article_text=text, article_tittle=articleBody[0])
+        return render_template("article.html", article_text=text, article_tittle=articleBody[0], article_likes=articleBody[2], article_id=article_id)
     return render_template(f"/lab5/article/{article_id}")
 
 
@@ -191,3 +192,14 @@ def addToFavorites(article_id):
         dbClose(cur, conn)
         return redirect("/lab5/articles")
     return redirect("/lab5/log")
+
+@lab5.route('/lab5/article/<int:article_id>/like', methods=["POST"])
+def likeArticle(article_id):
+    conn = dbConnect()
+    cur = conn.cursor()
+
+    cur.execute("UPDATE articles SET likes = likes + 1 WHERE id = %s AND is_public = True", (article_id,))
+    conn.commit()
+
+    dbClose(cur, conn)
+    return redirect(f"/lab5/article/{article_id}")
