@@ -1,0 +1,35 @@
+<style>
+    .errors {
+        font-weight: bold;
+        color: brown;
+        font-size: 20px;
+        margin-top: 15px;
+        background-color: blanchedalmond;
+        margin: 10px 800px 10px 40px;
+        padding: 5px;
+    }
+</style>
+{% extends 'base.html' %}
+
+{% block lab %}Лабораторная работа 6{% endblock %}
+
+{% block main %}
+    <a href="/lab6">Главная страница</a>
+    <form method="POST">
+        <h1>Страница регистрации</h1>
+        <div>
+            <label for="username">Логин</label>
+            <input type="text" name="username" id="username" >
+            
+        </div>
+        <div>
+            <label for="password">Пароль</label>
+                <input type="text" name="password" id="password">
+        
+        </div>
+        <button type="submit">Зарегистрироваться</button>
+        {% if error %}
+            <div class="errors">{{ error }}</div>
+        {% endif %}
+    </form>
+{% endblock %}

@@ -1,0 +1,50 @@
+<style>
+    .ty {
+        list-style: none; /*убираем маркеры списка*/
+        margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+        padding-left: 10; /*убираем левый отступ, равный 40px*/
+        
+    }
+    .menu {text-decoration: none; /*убираем подчеркивание текста ссылок*/
+        background:#30A8E6; /*добавляем фон к пункту меню*/
+        color:#fff; /*меняем цвет ссылок*/
+        padding:10px; /*добавляем отступ*/
+        font-family: arial; /*меняем шрифт*/
+        border-radius:4px;
+        }
+    li {
+        float:left; /*Размещаем список горизонтально для реализации меню*/
+        margin-right:25px; /*Добавляем отступ у пунктов меню*/
+        }
+</style>
+{% extends 'base.html' %}
+
+{% block lab %} Лабораторная работа 6 {% endblock %}
+
+{% block main %}
+    
+    <ul class="ty">
+        <li>
+            <a href="/lab5/article" class="menu">Просмотреть заметки</a>
+        </li>
+        <li >
+            <a href="/lab5/new_article" class="menu">Создать заметку</a>
+        </li>
+        <li >
+            <a href="/lab5/log" class="menu">Логин</a>
+        </li>
+        <li >
+            <a href="/lab6/register2" class="menu">Регистрация</a>
+        </li>
+        <li>
+            <a href="/lab5/articles" class="menu">{{ username }}</a>
+
+        </li>
+        <li>
+            <a href="/lab5/logout" class="menu">Logout</a>
+        </li>
+    </ul>
+    
+    
+    
+{% endblock %}
