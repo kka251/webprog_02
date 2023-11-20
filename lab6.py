@@ -3,15 +3,18 @@ from db import db
 # Данные объекты представляют из себя таблицы users и articles в БД
 from db.models import users, articles 
 from werkzeug. security import check_password_hash, generate_password_hash
-from flask_login import login_user, login_required, current_user
+from flask_login import login_user, login_required, current_user, logout_user
 import psycopg2
 
 lab6 = Blueprint ("lab6", __name__)
 
 @lab6.route ("/lab6")
 def main():
-    return render_template('lab6.html')
-
+    username = request.form.get("username")
+    if not username:
+        visibleUser = "Anon"
+        return render_template('lab5.html', username=visibleUser)
+    return render_template('lab5.html', username=username)
 @lab6.route("/lab6/check")
 def check():
 # Тоже самое, что select * from users
@@ -97,4 +100,14 @@ def log2():
     
     return redirect("/lab6/articles2")
 
-   
+@lab6.route("/lab6/articles2")
+@login_required
+def articles_list():
+    my_articles = articles.query.filter_by(user_id=current_user.id).all()
+    return render_template("list_articles.html", articles=my_articles)
+
+@lab6.route("/lab6/logout2")
+@login_required
+def logout():
+    logout_user()
+    return redirect("/lab6")

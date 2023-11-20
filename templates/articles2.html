@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block lab %}Лабораторная работа 6{% endblock %}
+
+{% block main %}
+    <h1>Мои заметки</h1>
+    <ul>
+        {% for article in articles %}
+            <h3>{{ article[1] }}</h3>
+            <a href="/lab6/article/{{ article[0] }}">Подробнее</a>
+            <form action="/lab6/article/{{ article[0] }}/favorite" method="POST">
+                <p><button type="submit">Добавить в избранное</button></p>
+            </form>
+        {% endfor %}
+    </ul>
+    <a href="/lab6">Главная страница</a>
+{% endblock %}
