@@ -73,3 +73,28 @@ def register():
 
     # Перенаправляем на страницу логина
     return redirect("/lab6/log2")
+
+@lab6.route("/lab6/log2", methods=["GET", "POST"])
+def log2():
+    if request.method == "GET":
+        return render_template("log2.html")
+    
+    username_form = request.form.get("username")
+    password_form = request.form.get("password")
+
+    if not username_form or not password_form:
+        return render_template("log2.html", error="Заполните все поля")
+
+    my_user = users.query.filter_by(username=username_form).first()
+
+    if my_user is None:
+        return render_template("log2.html", error="Пользователь не существует")
+
+    if not check_password_hash(my_user.password, password_form):
+        return render_template("log2.html", error="Неправильный пароль")
+
+    login_user(my_user, remember=False)
+    
+    return redirect("/lab6/articles2")
+
+   
