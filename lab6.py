@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect
+from flask import Blueprint, request, render_template, redirect, session, url_for
 from db import db
 # Данные объекты представляют из себя таблицы users и articles в БД
 from db.models import users, articles 
@@ -8,13 +8,15 @@ import psycopg2
 
 lab6 = Blueprint ("lab6", __name__)
 
-@lab6.route ("/lab6")
+@lab6.route("/lab6")
 def main():
-    username = request.form.get("username")
-    if not username:
-        visibleUser = "Anon"
-        return render_template('lab5.html', username=visibleUser)
-    return render_template('lab5.html', username=username)
+    if current_user.is_authenticated:
+        visibleUser = current_user.username  # Получите имя текущего пользователя
+    else:
+        visibleUser = "Аноним"
+
+    return render_template('lab6.html', username_form=visibleUser)
+
 @lab6.route("/lab6/check")
 def check():
 # Тоже самое, что select * from users
@@ -98,7 +100,7 @@ def log2():
 
     login_user(my_user, remember=False)
     
-    return redirect("/lab6/articles2")
+    return redirect("/lab6")
 
 @lab6.route("/lab6/articles2")
 @login_required
@@ -111,3 +113,53 @@ def articles_list():
 def logout():
     logout_user()
     return redirect("/lab6")
+
+@lab6.route("/lab6/add_article", methods=["GET", "POST"])
+@login_required
+def add_article():
+    if request.method == "POST":
+    # Проверка на пустое название статьи
+        tittle = request.form.get("tittle")
+        article_text = request.form.get("article_text")
+        if tittle and article_text:  # Проверка, что title и article_text не пустые
+            new_article = articles(tittle=tittle, article_text=article_text, user_id=current_user.id, is_public=True)
+            db.session.add(new_article)
+            db.session.commit()
+            return redirect(url_for('lab6.list_articles'))
+        else:
+            return render_template("add_article.html", error="Заполните все поля!")
+    return render_template("add_article.html")
+
+
+@lab6.route ("/lab6/articles2/<int:article_id>", methods=["GET"])
+@login_required 
+def getArticle(article_id):
+    article = articles.query.filter_by(id=article_id).first()
+    if article:
+        return render_template("articles2.html", article=article)
+    else:
+        return "Not found!"
+
+@lab6.route("/lab6/list_articles", methods=["GET"])
+@login_required 
+def list_articles():
+    my_articles = articles.query.order_by(articles.is_favorite.asc()).all()
+    return render_template('list_articles.html', articles=my_articles)
+
+@lab6.route("/lab6/add_to_favorites/<int:article_id>", methods=["POST"])
+@login_required
+def add_to_favorites(article_id):
+    article = articles.query.filter_by(id=article_id).first()
+    if article:
+        article.is_favorite = True
+        db.session.commit()
+    return redirect(url_for('lab6.list_articles'))
+
+@lab6.route("/lab6/like_article/<int:article_id>", methods=["POST"])
+@login_required
+def like_article(article_id):
+    article = articles.query.get(article_id)
+    if article:
+        article.likes = article.likes + 1 if article.likes else 1
+        db.session.commit()
+    return redirect(url_for('lab6.getArticle', article_id=article_id))

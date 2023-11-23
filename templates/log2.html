@@ -4,12 +4,27 @@
         color: brown;
         font-size: 20px;
     }
+    a {text-decoration: none; /*убираем подчеркивание текста ссылок*/
+        cursor: pointer;
+        text-decoration: none;
+        background:#53382b; /*добавляем фон к пункту меню*/
+        color:#e1e0df; /*меняем цвет ссылок*/
+        padding:10px; /*добавляем отступ*/
+        font-family: arial; /*меняем шрифт*/
+        border-radius:4px;
+        margin-top: 10px;
+        }
+    main {
+        margin: 10px;
+        text-align: center;
+    }
 </style>
 {% extends 'base.html' %}
 
 {% block lab %}Лабораторная работа 6{% endblock %}
 
 {% block main %}
+    <a href="/lab6">Главная страница</a>
     <h1>Вход</h1>
     <h2>Пожалуйста, авторизуйтесь</h2>
     <div class="error1">{{ error }}</div>
@@ -24,8 +39,7 @@
         </div> 
         <div>
             <button type="submit">Войти</button> 
-            <button type="reset">Отмена</button>
         </div>
     </form>
-    
+
 {% endblock %}

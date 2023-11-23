@@ -1,21 +1,29 @@
 <style>
     .ty {
         list-style: none; /*убираем маркеры списка*/
-        margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+        /* margin: 10; убираем верхнее и нижнее поле, равное 1em */
         padding-left: 10; /*убираем левый отступ, равный 40px*/
-        
+        margin-left: 140px;
     }
     .menu {text-decoration: none; /*убираем подчеркивание текста ссылок*/
-        background:#30A8E6; /*добавляем фон к пункту меню*/
-        color:#fff; /*меняем цвет ссылок*/
-        padding:10px; /*добавляем отступ*/
+        background:#53382b; /*добавляем фон к пункту меню*/
+        color:#e1e0df; /*меняем цвет ссылок*/
+        padding:20px; /*добавляем отступ*/
         font-family: arial; /*меняем шрифт*/
         border-radius:4px;
+        margin-top: 10px;
+        font-size: 20px;
         }
     li {
         float:left; /*Размещаем список горизонтально для реализации меню*/
-        margin-right:25px; /*Добавляем отступ у пунктов меню*/
+        margin-right: 30px; /*Добавляем отступ у пунктов меню*/
+        text-align: center;
+        margin-top: 20px;
         }
+    div{
+        padding: 90px;
+        margin-left: 80px;
+    }
 </style>
 {% extends 'base.html' %}
 
@@ -25,10 +33,10 @@
     
     <ul class="ty">
         <li>
-            <a href="/lab6/article2" class="menu">Просмотреть заметки</a>
+            <a href="/lab6/list_articles" class="menu">Просмотреть заметки</a>
         </li>
         <li >
-            <a href="/lab6/new_article2" class="menu">Создать заметку</a>
+            <a href="/lab6/add_article" class="menu">Создать заметку</a>
         </li>
         <li >
             <a href="/lab6/log2" class="menu">Логин</a>
@@ -37,7 +45,7 @@
             <a href="/lab6/register2" class="menu">Регистрация</a>
         </li>
         <li>
-            <a href="/lab6/articles2" class="menu">{{ username }}</a>
+            <a href="/lab6/articles2" class="menu">{{ username_form }}</a>
 
         </li>
         <li>
@@ -45,6 +53,8 @@
         </li>
     </ul>
     
-    
+    <div>
+        <img src='/static/bd.jpg'>
+    </div>
     
 {% endblock %}

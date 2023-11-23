@@ -1,17 +1,35 @@
+<style>
+    a {text-decoration: none; /*убираем подчеркивание текста ссылок*/
+        cursor: pointer;
+        text-decoration: none;
+        background:#53382b; /*добавляем фон к пункту меню*/
+        color:#e1e0df;  /*меняем цвет ссылок*/
+        padding:10px; /*добавляем отступ*/
+        font-family: arial; /*меняем шрифт*/
+        border-radius:4px;
+        margin-top: 10px;
+        }
+    main {
+        margin: 10px;
+        text-align: center;
+    }
+    p {
+        font-weight: bold;
+    }
+</style>
 {% extends 'base.html' %}
 
 {% block lab %}Лабораторная работа 6{% endblock %}
 
-{% block main %}
-    <h1>Мои заметки</h1>
-    <ul>
-        {% for article in articles %}
-            <h3>{{ article[1] }}</h3>
-            <a href="/lab6/article/{{ article[0] }}">Подробнее</a>
-            <form action="/lab6/article/{{ article[0] }}/favorite" method="POST">
-                <p><button type="submit">Добавить в избранное</button></p>
-            </form>
-        {% endfor %}
-    </ul>
+{% block main%}
     <a href="/lab6">Главная страница</a>
+    <div>
+        <h2>{{ article.tittle }}</h2>
+        <p>{{ article.article_text }}</p>
+    </div>
+    <form action="{{ url_for('lab6.like_article', article_id=article.id) }}" method="POST">
+        <p>Лайки: {{ article.likes }}</p>
+        <button type="submit">👍</button>
+    </form>
+    <a href="/lab6/list_articles">Назад к заметкам</a>
 {% endblock %}

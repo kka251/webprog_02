@@ -16,7 +16,7 @@ class articles(db.Model):
     article_text = db.Column(db.Text, nullable=False)
     is_favorite = db.Column(db.Boolean)
     is_public = db.Column(db.Boolean)
-    likes = db.Column(db.Integer)
+    likes = db.Column(db.Integer, default=0)
 
     def __repr__ (self):
         return f'{self.tittle} - {self.article_text}'

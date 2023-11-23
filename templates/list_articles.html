@@ -1,15 +1,43 @@
+<style>
+    a {text-decoration: none; /*убираем подчеркивание текста ссылок*/
+        cursor: pointer;
+        text-decoration: none;
+        background:#53382b; /*добавляем фон к пункту меню*/
+        color:#e1e0df; /*меняем цвет ссылок*/
+        padding:10px; /*добавляем отступ*/
+        font-family: arial; /*меняем шрифт*/
+        border-radius:4px;
+        margin-top: 10px;
+        }
+    main {
+        margin: 10px;
+        text-align: center;
+    }
+</style>
 {% extends 'base.html' %}
 
 {% block lab %}Лабораторная работа 6{% endblock %}
 
-{% block main %}
+{% block main%}
+    <a href="/lab6">Главная страница</a>
 
-    <h1>My Articles</h1>
-    <ul>
-        {% for article in articles %}
-            <li>{{ article.title }}</li>
-            <a href="/lab6/article/{{ article[0] }}">Подробнее</a>
-        {% endfor %}
-    </ul>
-    <a href="/lab6">Обратно</a>
-    {% endblock %}
+    <h1>Все заметки</h1>
+    
+    {% for article in articles %}
+    <div>
+        <h3>{{ article.tittle }}</h3>
+        <a href="{{ url_for('lab6.getArticle', article_id=article.id) }}">Читать больше</a>
+        {% if article.is_favorite %}
+            <p>★ В избранном</p>
+        {% else %}
+        <form action="{{ url_for('lab6.like_article', article_id=article.id) }}" method="POST">
+            <p>Лайки: {{ article.likes }}</p>
+            <button type="submit">👍</button>
+        </form>
+            <form action="{{ url_for('lab6.add_to_favorites', article_id=article.id) }}" method="POST">
+                <p><button type="submit">Добавить в избранное</button></p>
+            </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endblock %}

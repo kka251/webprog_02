@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block lab %} Лабораторная работа 6 {% endblock %}
+{% block main %}
+    <a href="/lab6">Главная страница</a>
+    <h1> {{ article_tittle }} </h1>
+    {% for paragraph in article_text %}
+        <p> {{ paragraph }} </p>
+    {% endfor %}
+    <p>Likes: {{ article_likes }}</p>
+    <form action="/lab6/article/{{ article_id }}/like" method="POST">
+        <button type="submit">Like</button>
+    </form>
+    
+{% endblock %}

@@ -1,0 +1,48 @@
+<style>
+    .error{
+        font-weight: bold;
+        color: brown;
+        font-size: 20px;
+    }
+    a {text-decoration: none; /*убираем подчеркивание текста ссылок*/
+        cursor: pointer;
+        text-decoration: none;
+        background:#53382b; /*добавляем фон к пункту меню*/
+        color:#e1e0df;  /*меняем цвет ссылок*/
+        padding:10px; /*добавляем отступ*/
+        font-family: arial; /*меняем шрифт*/
+        border-radius:4px;
+        margin-top: 20px;
+        }
+        main {
+        margin: 10px;
+        text-align: center;
+    }
+</style>
+{% extends "base.html" %}
+
+{% block main %}
+   <div>
+    <a href="/lab6">Главная страница</a>
+   </div> 
+
+  <h1>Добавить статью</h1>
+
+  {% if error %}
+    <p>{{ error }}</p>
+  {% endif %}
+
+  <form method="POST">
+    <div>
+      <label for="tittle">Название статьи:</label>
+    </div>
+      <input type="text" id="tittle" name="tittle">
+    <div>
+      <label for="article_text">Содержание:</label>
+    </div>
+      <textarea id="article_text" name="article_text"></textarea>
+    <div>
+      <button type="submit">Добавить</button>
+    </div>
+  </form>
+{% endblock %}
