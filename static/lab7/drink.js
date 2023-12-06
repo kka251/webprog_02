@@ -59,3 +59,34 @@ function pay() {
         document.querySelector('#pay').innerHTML = `Ошибка: ${error.message}`;
     });
 }
+
+function refund() {
+    const milk = document.querySelector('[name=milk]').checked;
+    const sugar = document.querySelector('[name=sugar]').checked;
+    const drink = document.querySelector('[name=drink]:checked').value;
+    const card_num = document.querySelector('[name=card_num]').value;
+    const cvv = document.querySelector('[name=cvv]').value;
+
+    const obj = {
+        "method": "pay",
+        "params": {
+            drink: drink,
+            milk: milk,
+            sugar: sugar,
+            card_num: card_num,
+            cvv: cvv
+        }
+    };
+
+    fetch('/lab7/api', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(obj)
+    })
+    .then(function(resp) {
+        return resp.json();
+    })
+    .then(function(data) {
+        document.querySelector('#pay').innerHTML = `Оплата отменена`;
+    })
+}
