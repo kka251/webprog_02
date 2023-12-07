@@ -18,21 +18,28 @@ def get_courses():
 
 @lab8.route('/lab8/api/courses/<int:course_num>', methods=['GET'])
 def get_course(course_num):
-    if course_num < 0 or course_num >= len(courses):
+    if course_num < 0 or course_num >= len(courses)-1:
         return "Error 404: Course not found", 404
     return courses[course_num]
 
 @lab8.route('/lab8/api/courses/<int:course_num>', methods=['DELETE'])
 def del_course(course_num):
-    if course_num < 0 or course_num >= len(courses):
+    if course_num < 0 or course_num >= len(courses)-1:
         return "Error 404: Course not found", 404
     del courses[course_num]
     return '', 204
 
 @lab8.route('/lab8/api/courses/<int:course_num>', methods=['PUT'])
 def put_course(course_num):
-    if course_num < 0 or course_num >= len(courses):
+    if course_num < 0 or course_num >= len(courses)-1:
         return "Error 404: Course not found", 404
     course =request.get_json()
     courses[course_num] = course
     return courses[course_num]
+
+@lab8.route('/lab8/api/courses', methods=['POST'])
+def add_course():
+    course = request.get_json()
+    courses.append(course)
+    return {"num": len(courses)-1}
+
