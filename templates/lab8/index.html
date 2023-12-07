@@ -1,14 +1,35 @@
+
 {% extends "base.html" %}
 
 {% block lab %}Лабораторная работа 8{% endblock %}
 
 {% block script %}
+<script src="{{ url_for('static', filename='lab8/main.js')}}"></script>
 {% endblock %}
 
 {% block main %}
-    <ul>
-        <li>
-            <a href="/lab8/courses">Курсы</a>
-        </li>
-    </ul>
+    <h1>Список курсов</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Количество видероликов</th>
+                <th>Цена</th>
+                <th>Действие</th>
+            </tr>
+            <tbody id="course-list"></tbody>
+        </thead>
+    </table>
+
+    <script>
+        fillCourseList();
+    </script>
+
+    <div>
+        <button>Добавить курс</button>
+    </div>
 {% endblock %}
+
+
+
