@@ -24,6 +24,9 @@ function fillCourseList() {
 
             let delBut = document.createElement('button');
             delBut.innerText = 'удалить';
+            delBut.onclick = function(){
+                deleteCourse(i);
+            }
 
             let tdActions = document.createElement('td');
             tdActions.append(editBut);
@@ -38,4 +41,14 @@ function fillCourseList() {
         }
 
     })
+}
+
+function deleteCourse(num){
+    if(! confirm('Вы точно хотите удалить курс?'))
+        return;
+
+    fetch (`/lab8/api/courses/${num}`, {method: 'DELETE'})
+    .then(function() {
+        fillCourseList();
+    });
 }
