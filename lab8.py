@@ -1,4 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, url_for, abort, jsonify
+from datetime import datetime
+
 
 lab8 = Blueprint ("lab8", __name__)
 
@@ -7,9 +9,9 @@ def main():
     return render_template('lab8/index.html')
 
 courses = [
-    {"name": "C++", "videos": 3, "price": 3000},
-    {"name": "basic", "videos": 30, "price": 0},
-    {"name": "C#", "videos": 8}
+    {"name": "C++", "videos": 3, "price": 3000, "date_": "2023-12-11"},
+    {"name": "basic", "videos": 30, "price": 0, "date_": "2023-12-19"},
+    {"name": "C#", "videos": 8, "date_": "2023-12-20"}
 ]
 
 @lab8.route('/lab8/api/courses/', methods=['GET'])
@@ -41,5 +43,6 @@ def put_course(course_num):
 def add_course():
     course = request.get_json()
     courses.append(course)
+    course["date_"] = datetime.now().strftime("%Y-%m-%d")
     return {"num": len(courses)-1}
 
