@@ -55,7 +55,7 @@ function pay() {
     .then(function(data) {
         document.querySelector('#pay').innerHTML = `Списание произведено`;
     })
-    .catch(function(error) {
+    .then(function(error) {
         document.querySelector('#pay').innerHTML = `Ошибка: ${error.message}`;
     });
 }
