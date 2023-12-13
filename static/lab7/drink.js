@@ -53,10 +53,11 @@ function pay() {
         return resp.json();
     })
     .then(function(data) {
-        document.querySelector('#pay').innerHTML = `Списание произведено`;
-    })
-    .then(function(error) {
-        document.querySelector('#error').innerHTML = `Ошибка: ${error.message}`;
+        if (data.error) {
+            alert("Ошибка: " + data.error);
+        } else {
+            alert(data.result);
+        }
     });
 }
 
