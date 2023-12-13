@@ -24,28 +24,28 @@ def menu():
 
         <ol>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab1" target="_blank" >Лабораторная работа 1</a>
+                    <a href="/lab1" target="_blank" >Лабораторная работа 1</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab2" target="_blank" >Лабораторная работа 2</a>
+                    <a href="/lab2" target="_blank" >Лабораторная работа 2</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab3" target="_blank" >Лабораторная работа 3</a>
+                    <a href="/lab3" target="_blank" >Лабораторная работа 3</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab4" target="_blank" >Лабораторная работа 4</a>
+                    <a href="/lab4" target="_blank" >Лабораторная работа 4</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab5" target="_blank" >Лабораторная работа 5</a>
+                    <a href="/lab5" target="_blank" >Лабораторная работа 5</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab6" target="_blank" >Лабораторная работа 6</a>
+                    <a href="/lab6" target="_blank" >Лабораторная работа 6</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab7/" target="_blank" >Лабораторная работа 7</a>
+                    <a href="/lab7/" target="_blank" >Лабораторная работа 7</a>
                 </li>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab8/" target="_blank" >Лабораторная работа 8</a>
+                    <a href="/lab8/" target="_blank" >Лабораторная работа 8</a>
                 </li>
         </ol>
         <footer>
@@ -78,22 +78,22 @@ def lab():
             </div>
             <il >
                 <li style="margin: 15px;">
-                    <a href="http://127.0.0.1:5000/menu" target="_blank" >МЕНЮ</a>
+                    <a href="/menu" target="_blank" >МЕНЮ</a>
                 </li>
             </il>
         <h2>Реализованные теги</h2>
             <ol>
                 <li>
-                    <a href="http://127.0.0.1:5000/lab1/oak" target="_blank" >/lab1/oak - дуб</a>
+                    <a href="/lab1/oak" target="_blank" >/lab1/oak - дуб</a>
                 </li>
                  <li>
-                    <a href="http://127.0.0.1:5000/lab1/student" target="_blank" >/lab1/student - студент</a>
+                    <a href="/lab1/student" target="_blank" >/lab1/student - студент</a>
                 </li>
                  <li>
-                    <a href="http://127.0.0.1:5000/lab1/python" target="_blank" >/lab1/python - python</a>
+                    <a href="/lab1/python" target="_blank" >/lab1/python - python</a>
                 </li>
                  <li>
-                    <a href="http://127.0.0.1:5000/lab1/sm" target="_blank" >/lab1/sm </a>
+                    <a href="/lab1/sm" target="_blank" >/lab1/sm </a>
                 </li>
         </ol>
         <footer>
