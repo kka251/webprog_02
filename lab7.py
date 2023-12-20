@@ -49,7 +49,7 @@ def pay(params):
         return {"result": None, "error": "Наверный номер карты"}
     
     cvv = params['cvv']
-    if len(cvv) != 16 or not cvv.isdigit():
+    if len(cvv) != 3 or not cvv.isdigit():
         return {"result": None, "error": "Неверный номер CVV/CVC"}
     
     price = calculate_price(params)

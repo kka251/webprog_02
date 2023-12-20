@@ -7,7 +7,7 @@ def dbConnect():
     conn = psycopg2.connect(
         host="127.0.0.1", 
         database="knowledge_base",
-        user= "kristina_knowledge_base",
+        user="kristina_knowledge_base",
         password="123")
     
     return conn
