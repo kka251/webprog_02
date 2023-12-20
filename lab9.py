@@ -10,3 +10,10 @@ def main():
 def not_found(e):
     return render_template('lab9/404.html'), 404
 
+@lab9.app_errorhandler(500)
+def not_found(e):
+    return render_template('lab9/500.html'), 500
+
+@lab9.route('/lab9/error500')
+def cause_error():
+    return 500/0
