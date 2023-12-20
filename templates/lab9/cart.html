@@ -1,0 +1,26 @@
+<style>
+    /* стили для новогоднего оформления */
+
+    .container {
+        text-align: center;
+        margin-top: 100px;
+    }
+</style>
+
+{% extends 'base.html' %}
+{% block lab %}Лабораторная работа 9{% endblock %}
+{% block main%}
+
+<div class="container">
+    <h2>Открытка</h2>
+
+    <p>{% if recipient_gender == 'мужской' %}Дорогой {% else %}Дорогая {% endif %}{{ recipient_name }}! </p>
+
+    <p>Желаю быть {% if recipient_gender == 'мужской' %}сильным, умным, здоровым, крепким{% else %}умной, желанной, блистательной{% endif %} в новом году!</p>
+
+    <p>С уважением, {{ sender_name }}</p>
+</div>
+
+<a href="/lab9/">Назад</a>
+
+{% endblock %}

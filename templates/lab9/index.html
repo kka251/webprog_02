@@ -2,4 +2,20 @@
 {% block lab %}Лабораторная работа 9{% endblock %}
 {% block main%}
     <h1>Поздравления</h1>
+    <a href="/lab9/error500">500</a>
+    <a href="/lab9/123">404</a>
+    <form  class="container" action="/lab9/" method="post">
+        <h1>Поздравления</h1>
+        <h2>Введите данные</h2>
+        <label for="recipient_name">Имя получателя:</label><br>
+        <input  style="margin-bottom: 10px;" type="text" id="recipient_name" name="recipient_name"><br>
+        <label for="recipient_gender">Пол получателя:</label><br>
+        <select style="margin-bottom: 10px;" id="recipient_gender" name="recipient_gender">
+          <option value="мужской">Мужской</option>
+          <option value="женский">Женский</option>
+        </select><br>
+        <label for="sender_name">Имя отправителя:</label><br>
+        <input style="margin-bottom: 10px;"  type="text" id="sender_name" name="sender_name"><br>
+        <button value="submit">Готово</button> 
+      </form>
 {% endblock %}
